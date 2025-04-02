@@ -7,8 +7,8 @@
     
     "mounts": [
         {
-            "source": "${localWorkspaceFolder}/rpi/HASP_25_CPP",
-            "target": "/workspace/propeller/HASP_25_CPP",
+            "source": "${localWorkspaceFolder}/rpi/HASP_25_C",
+            "target": "/workspace/propeller/HASP_25_C",
             "type": "bind"
         }
     ],
@@ -20,7 +20,8 @@
                 "ms-vscode.cmake-tools",
                 "ms-vscode.cpptools-extension-pack",
                 "ms-vscode.cpptools",
-                "ms-vscode.cpptools-themes"
+                "ms-vscode.cpptools-themes",
+                "mcu-debug.memory-view"
             ]
         }
     }

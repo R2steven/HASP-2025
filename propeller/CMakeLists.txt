@@ -12,22 +12,22 @@ project(HASP-2025
 ################################################################################
 
 ## find files to compile into shared library 
-file(GLOB_RECURSE HASP-2025-Private-Source "${CMAKE_CURRENT_LIST_DIR}/HASP_25_CPP/src/*.cpp")
-file(GLOB_RECURSE HASP-2025-Public-Headers "${CMAKE_CURRENT_LIST_DIR}/HASP_25_CPP/include/*.h")
+file(GLOB_RECURSE HASP-2025-Private-Source "${CMAKE_CURRENT_LIST_DIR}/HASP_25_C/src/*.c")
+file(GLOB_RECURSE HASP-2025-Public-Headers "${CMAKE_CURRENT_LIST_DIR}/HASP_25_C/include/*.h")
 
-## set include directory for C++
-set(HASP-2025-Include "${CMAKE_CURRENT_LIST_DIR}/HASP_25_CPP/include")
+## set include directory for C
+set(HASP-2025-Include "${CMAKE_CURRENT_LIST_DIR}/HASP_25_C/include/")
 
-add_library(HASP_2025_CPP_lib "")
+add_library(HASP_2025_C_lib "")
 
-target_sources(HASP_2025_CPP_lib
+target_sources(HASP_2025_C_lib
     PRIVATE
         ${HASP-2025-Private-Source}
     PUBLIC
         ${HASP-2025-Public-Headers}
 )
 
-target_include_directories(HASP_2025_CPP_lib
+target_include_directories(HASP_2025_C_lib
     PUBLIC
         ${HASP-2025-Include}
 )
@@ -36,5 +36,10 @@ target_include_directories(HASP_2025_CPP_lib
 ###    HASP 25 Testing    ######################################################
 ################################################################################
 
-#enable_testing()
+enable_testing()
 
+add_executable(Deque_Test "${CMAKE_CURRENT_LIST_DIR}/test/Deque_test.c")
+
+target_link_libraries(Deque_Test PRIVATE HASP_2025_C_lib)
+
+add_test(NAME HASP_2025_Test COMMAND Deque_Test)
